@@ -1,0 +1,52 @@
+name: queue-template
+version: '0.0.0'
+github: "githubuser/queue-template"
+license: MIT
+author: "Author name here"
+maintainer: "Author name here"
+# synopsis: A new Haskeleton package.
+# description: queue-template is a new Haskeleton package.
+# category: Other
+
+extra-source-files:
+- LICENSE.md
+- package.yaml
+- README.md
+- stack.yaml
+
+ghc-options: -Wall
+
+library:
+  dependencies:
+  - base
+  source-dirs: library
+
+benchmarks:
+  queue-template-benchmarks:
+    source-dirs: benchmark
+    main: Main.hs
+    dependencies:
+    - base
+    - queue-template
+    - criterion
+    - deepseq
+    ghc-options:
+    - -rtsopts
+    - -threaded
+    - -with-rtsopts "-N -H1G -M2G"
+
+tests:
+  queue-template-test-suite:
+    source-dirs: test-suite
+    main: Main.hs
+    dependencies:
+    - base
+    - queue-template
+    - tasty
+    - tasty-hspec
+    - tasty-quickcheck
+    - QuickCheck
+    ghc-options:
+    - -rtsopts
+    - -threaded
+    - -with-rtsopts=-N
